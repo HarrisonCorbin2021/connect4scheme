@@ -48,6 +48,9 @@
 )
 
 (define (input-loop in)
+   (if (= in 16)
+        exit()
+   )
    (or (> in 0) (< in 5)
        (display "Not a valid input") (input-loop (string-to-int (read-line)))
    )
