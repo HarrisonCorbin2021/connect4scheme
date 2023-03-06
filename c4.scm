@@ -58,8 +58,6 @@
     )
 )
 
-(define (int-to-string i) (format "~a" i))
-
 (define (int-list-to-string lst)
     ; use string-append
     (fold

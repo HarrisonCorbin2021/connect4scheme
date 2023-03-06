@@ -1,4 +1,5 @@
 
+;Build a new board
 (define (build-board num_rows num_columns)
     (if (= num_rows 0)
         (build-list num_columns "x")
@@ -6,6 +7,7 @@
     )  
 )
 
+;Builds a row within a new board
 (define (build-list size item)
   (if (= 1 size)
      (list item)                      
@@ -39,7 +41,25 @@
     )
 )
 
+;Player's turn
+(define (player-turn board player_n)
+    (input-loop (read-line))
+   ; (display "All good!")
+)
+
+(define (input-loop in)
+   (or (> in 0) (< in 5)
+       (display "Not a valid input") (input-loop (string-to-int (read-line)))
+   )
+)
+
+(define (string-to-int s)
+    (- (char->integer (string-ref s 0)) 97)
+)
+
 ;(display "hello world")
 ;(update-list 5 "O" (list-ref (build-board 6 7) 0)) 0)
 ;(display (print-row (build-board 6 7) 5))
-(print-row (update-board (build-board 6 7) 5 1) 5)
+;(print-row (update-board (build-board 6 7) 5 1) 5)
+;(display(string-to-int "z"))
+(input-loop (string-to-int (read-line)))
