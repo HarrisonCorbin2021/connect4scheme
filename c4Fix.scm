@@ -42,11 +42,14 @@
 )
 
 ;Player's turn
-(define (player-turn board player_n)
-    (input-loop (read-line))
+(define (player-turn board player_n)   
+    (if (full-row  (input-loop (read-line)) (list-ref board 5))
+        (display "That slot is full, please choose another") (input-loop (read-line))
+    )
    ; (display "All good!")
 )
 
+;Checks to see if the input is valid
 (define (input-loop in)
    (if (= in 16)
         exit()
@@ -56,13 +59,28 @@
    )
 )
 
+;Converts the input into an idex for the list
 (define (string-to-int s)
     (- (char->integer (string-ref s 0)) 97)
 )
 
+(define (full-row x lst)
+  (if (string=? (list-ref lst x) "x")
+    #f
+    #t
+  )
+)
+
+;(define (place-piece col)
+;    (if ()
+
+;    )
+;)
+
 ;(display "hello world")
-;(update-list 5 "O" (list-ref (build-board 6 7) 0)) 0)
+;(update-list 5 "O" (list-ref (build-board 6 7) 0))
 ;(display (print-row (build-board 6 7) 5))
-;(print-row (update-board (build-board 6 7) 5 1) 5)
+;(print-row (update-board (build-board 6 7) 4 5) 5)
+;(display (full-row 4 (list-ref (update-board (build-board 6 7) 4 5) 5)))
 ;(display(string-to-int "z"))
-(input-loop (string-to-int (read-line)))
+;(input-loop (string-to-int (read-line)))
