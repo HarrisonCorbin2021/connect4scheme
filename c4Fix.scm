@@ -54,12 +54,16 @@
 
 ;Checks to see if the input is valid
 (define (input-loop in)
-   (if (= in 16)
+   (if (= (string-to-int in) 16)
         exit()
    )
-   (or (> in 0) (< in 5)
-       (display "Not a valid input") (input-loop (string-to-int (read-line)))
+   (if (> (string-to-int in) 0)
+       (display "Not a valid input") (input-loop (read-line))
    )
+    (if (< (string-to-int in) 5)
+       (display "Not a valid input") (input-loop (read-line))
+   )
+    in
 )
 
 ;Converts the input into an idex for the list
@@ -98,9 +102,48 @@
 )
 
 (define (change-turn turn)
-    (if (= turn 1)
-        2
-        1
+    (if (string=? turn "1")
+        "2"
+        "1"
+    )
+)
+
+(define (win-check board player_n col row)
+    (if (= row 8)
+        (win-check board player_n (+ col 1) 0)
+    )
+    (if (string=? (list-ref (list-ref board col) row) player_n)
+        (horizontal-win board col row count player_n)
+        (verticall-win board col row count player_n)
+        (diagonal-win board col row count player_n)
+        (win-check board player_n col (+ row 1))
+    )
+)
+
+(define (horizontal-win board col row count player_n)
+    (if (string=? (list-ref (list-ref board col) row) player_n)
+        (horizontal-win board col (+ row 1) (+ count 1) player_n)
+    )
+    (if (= count 4)
+        (display "Congratulations, Player ${player_n}. You win")
+    )
+)
+
+(define (verticall-win board col row count player_n)
+    (if (string=? (list-ref (list-ref board col) row) player_n)
+        (horizontal-win board (+ col 1) row (+ count 1) player_n)
+    )
+    (if (= count 4)
+        (display "Congratulations, Player ${player_n}. You win")
+    )
+)
+
+(define (diagonal-win board col row count player_n)
+    (if (string=? (list-ref (list-ref board col) row) player_n)
+        (horizontal-win board (+ col 1) (+ row 1) (+ count 1) player_n)
+    )
+    (if (= count 4)
+        (display "Congratulations, Player ${player_n}. You win")
     )
 )
 
@@ -128,3 +171,8 @@
 ;(print-row (place-piece (place-piece (build-board 6 7) 3 0 "1") 3 0 "2") 5)
 ;(print-row (update-board (update-board (update-board (build-board 6 3) 0 5 1) 1 5 1)2 5 1) 5)
 ;(display (check-draw (update-board (update-board (update-board (build-board 6 7) 0 5 "1") 1 5 "1")2 5 "1") 0 0))
+
+;(display (change-turn "2"))
+(display(string-to-int "b"))
+;(display(input-loop "a"))
+;(player-turn (build-board 6 7) "1") 
