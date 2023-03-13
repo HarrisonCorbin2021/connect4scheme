@@ -46,6 +46,7 @@
     (display "Please enter an input")
     (newline)
     (define input (input-loop (string-to-int(read-line))))
+    ;(display input)
     (if (full-row board 5 input)
         (display "That slot is full, please choose another" (input-loop (string-to-int(read-line))))
     )
@@ -59,16 +60,18 @@
 
 ;Checks to see if the input is valid
 (define (input-loop in)
+   ;(display in)
+   ;(display input)
    (if (= in 16)
-        exit()
+        (exit)
    )
    (if (< in 0)
-       (begin (display "Not a valid input") (newline) (input-loop (read-line)))
+       (begin (display "Not a valid input") (newline) (input-loop (string-to-int(read-line))))
    )
-   (if (> in 5)
-       (begin (display "Not a valid input") (newline) (input-loop (read-line)))
+   (if (> in 6)
+       (begin (display "Not a valid input") (newline) (input-loop (string-to-int(read-line))))
+       in
    )
-   in
 )
 
 ;Converts the input into an idex for the list
@@ -78,6 +81,7 @@
 
 ;Checks to see if a row is full
 (define (full-row board col row)
+  ;(display (list-ref (list-ref board 5) 0))
   (if (string=? (list-ref (list-ref board col) row) "x")
     #f
     #t
@@ -136,8 +140,10 @@
         (horizontal-win board col (+ row 1) (+ count 1) player_n)
     )
     (if (= count 4)
-        (begin (display "Congratulations, Player player_n. You win" player_n) (exit))
-    )
+        (begin (display "Congratulations, Player ")
+                (display player_n)
+                (display ". You win") 
+                (exit))    )
 )
 
 (define (vertical-win board col row count player_n)
@@ -145,8 +151,10 @@
         (vertical-win board (+ col 1) row (+ count 1) player_n)
     )
     (if (= count 4)
-        (begin (display "Congratulations, Player player_n. You win" player_n) (exit))
-    )
+        (begin (display "Congratulations, Player ")
+                (display player_n)
+                (display ". You win") 
+                (exit))    )
 )
 
 (define (diagonal-win board col row count player_n)
@@ -154,7 +162,10 @@
         (diagonal-win board (+ col 1) (+ row 1) (+ count 1) player_n)
     )
     (if (= count 4)
-        (begin (display "Congratulations, Player player_n. You win" player_n) (exit))
+        (begin (display "Congratulations, Player ")
+        (display player_n)
+        (display ". You win") 
+        (exit))
     )
 )
 
