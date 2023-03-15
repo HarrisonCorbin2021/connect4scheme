@@ -8,7 +8,7 @@ require 'rspec/expectations'
   end
 
   def c4_exec
-    @c4_exec ||= ENV.key?('C4_EXEC') ? ENV['C4_EXEC'] : './runC4'
+    @c4_exec ||= ENV.key?('C4_EXEC') ? ENV['C4_EXEC'] : 'java -jar kawa-3.1.1.jar c4.scm "$@"'
   end
 
 RSpec::Matchers.define :declare_win_for do |expected|

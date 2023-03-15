@@ -63,7 +63,7 @@
    ;(display in)
    ;(display input)
    (if (= in 16)
-        (exit)
+        (begin (display "Goodbye.")(exit))
    )
    (if (< in 0)
        (begin (display "Not a valid input") (newline) (input-loop (string-to-int(read-line))))
@@ -160,7 +160,7 @@
         (horizontal-win board col (+ row 1) (+ count 1) player_n)
     )
     (if (= count 4)
-        (begin (display (format "Congratulations, Player ~a. You Win" player_n)) (exit)) 
+        (begin (display (format "Congratulations, Player ~a. You Win." player_n)) (exit)) 
     )
 )
 
@@ -169,7 +169,7 @@
         (vertical-win board (+ col 1) row (+ count 1) player_n)
     )
     (if (= count 4)
-        (begin (display (format "Congratulations, Player ~a. You Win" player_n)) (exit)) 
+        (begin (display (format "Congratulations, Player ~a. You Win." player_n)) (exit)) 
     )
 )
 
@@ -178,7 +178,7 @@
         (diagonal-win board (+ col 1) (+ row 1) (+ count 1) player_n)
     )
     (if (= count 4)
-        (begin (display (format "Congratulations, Player ~a. You Win" player_n)) (exit)) 
+        (begin (display (format "Congratulations, Player ~a. You Win." player_n)) (exit)) 
     )
 )
 
