@@ -116,16 +116,15 @@
     )
 )
 
-(for-each (lambda (row))
-    (for-each (lambda (col))
+;(for-each (lambda (row))
+ ;   (for-each (lambda (col))
 
-    )
-)
+  ;  )
+;)
 
 (define (win-check board player_n col row)
-    (display (format "colum: ~a row: ~a" col row))
-    (if (= col 8)
-        (win-check board player_n (+ col 1) 0)
+    ;(display (format "colum: ~a row: ~a" col row))
+    (if (< col 6)
         (if (= row 7)
             (win-check board player_n (+ col 1) 0)
             (begin 
@@ -144,9 +143,21 @@
     )
 )
 
+(define (win-start row col)
+    (for-each (lambda (row)
+	    (for-each (lambda (col) 
+        (display (format "Row ~a Col ~a\n" row col))
+        )
+		        '(0 1 2 3 4 5 6)
+			); end col	      	
+	    )
+	    '(0 1 2 3 4 5) ; end row				
+    )
+)
+
 (define (horizontal-win board col row count player_n)
     (if (string=? (list-ref (list-ref board col) row) player_n)
-        (begin (display count) (horizontal-win board col (+ row 1) (+ count 1) player_n))
+        (horizontal-win board col (+ row 1) (+ count 1) player_n)
     )
     (if (= count 4)
         (begin (display (format "Congratulations, Player ~a. You Win" player_n)) (exit)) 
@@ -158,10 +169,8 @@
         (vertical-win board (+ col 1) row (+ count 1) player_n)
     )
     (if (= count 4)
-        (begin (display "Congratulations, Player ")
-                (display player_n)
-                (display ". You win") 
-                (exit))    )
+        (begin (display (format "Congratulations, Player ~a. You Win" player_n)) (exit)) 
+    )
 )
 
 (define (diagonal-win board col row count player_n)
@@ -169,10 +178,7 @@
         (diagonal-win board (+ col 1) (+ row 1) (+ count 1) player_n)
     )
     (if (= count 4)
-        (begin (display "Congratulations, Player ")
-        (display player_n)
-        (display ". You win") 
-        (exit))
+        (begin (display (format "Congratulations, Player ~a. You Win" player_n)) (exit)) 
     )
 )
 
