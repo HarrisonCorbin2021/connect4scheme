@@ -6,7 +6,7 @@ require 'spec_helper'
 describe 'C4 standard board size' do
     it 'detects P1 winning horizontally in row 0' do
         # Notice that the game should end before the last 'q' input is consumed
-        result = test_c4('aabbccdq')
+        result = test_c4('aabbccd')
         expect(result).to declare_win_for 1
     end
 
@@ -16,6 +16,12 @@ describe 'C4 standard board size' do
     end
 end
 
+describe 'C4 standard board size' do
+    it 'detects P1 winning horizontally at the edge' do
+        result = test_c4('bddeeffg')
+        expect(result).to declare_win_for 2
+    end
+end
 
 describe 'Connect 4 alternate' do
     it 'detects player 2 winning horizontally on a big board' do
@@ -31,7 +37,7 @@ end
 
 describe 'Connect 4 alternate' do
     it 'detects player 1 winning vertically on a big board' do
-        result = test_c4('abacadaq', 3, 9, 7)
+        result = test_c4('abacada', 3, 9, 7)
         expect(result).to declare_win_for 1
     end
 
@@ -55,7 +61,7 @@ end
 
 describe 'Connect 4 alternate' do
     it 'detects player 1 winning diagonally on a big board' do
-        result = test_c4('abbccdedcddq', 3, 9, 7)
+        result = test_c4('abbccdedcdd', 3, 9, 7)
         expect(result).to declare_win_for 1
     end
 
