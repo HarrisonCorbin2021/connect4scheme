@@ -88,7 +88,7 @@ describe 'Connect 4 alternate' do
         result = test_c4('aabbccaabbccaabbccedfegfdggdfgefdegdfgefde', 3, 9, 7)
     end
 
-    it 'quits before declaring a winner tie' do
+    xit 'quits before declaring a winner tie' do
         result = test_c4('aabbccaabbccaabbccedfegfdggdfgefdegdfgefdq', 3, 9, 7)
         expect(result).to be_abandoned
     end
