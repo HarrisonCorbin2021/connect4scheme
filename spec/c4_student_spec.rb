@@ -84,11 +84,11 @@ describe 'Connect 4 alternate' do
 end
 
 describe 'Connect 4 alternate' do
-    xit 'detects a tie' do
+    it 'detects a tie' do
         result = test_c4('aabbccaabbccaabbccedfegfdggdfgefdegdfgefde', 3, 9, 7)
     end
 
-    xit 'quits before declaring a winner tie' do
+    it 'quits before declaring a winner tie' do
         result = test_c4('aabbccaabbccaabbccedfegfdggdfgefdegdfgefdq', 3, 9, 7)
         expect(result).to be_abandoned
     end
