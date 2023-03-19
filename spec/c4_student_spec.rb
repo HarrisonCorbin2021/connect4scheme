@@ -93,3 +93,10 @@ describe 'Connect 4 alternate' do
         expect(result).to be_abandoned
     end
 end
+
+describe 'Connect 4 alternate' do
+    it 'detects player 1 winning by reaching the top of the board' do
+        result = test_c4('abbabababa', 3, 9, 7)
+        expect(result).to declare_win_for 1
+    end
+end
