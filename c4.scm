@@ -46,7 +46,7 @@
     (display "Please enter an input")
     (newline)
     (define input (input-loop (string-to-int(read-line))))
-    ;(display input)
+    (display (format "You entered ~a\n" input))
     (if (full-row board 5 input)
         (begin (display "That slot is full, please choose another") (newline) (player-turn board player_n))
     )
@@ -65,13 +65,11 @@
    (if (= in 16)
         (begin (display "Goodbye.")(exit))
    )
-   (if (< in 0)
-       (begin (display "Not a valid input") (newline) (input-loop (string-to-int(read-line))))
-   )
-   (if (> in 6)
-       (begin (display "Not a valid input") (newline) (input-loop (string-to-int(read-line))))
-       in
-   )
+    (cond 
+       ((< in 0) (begin (display "Not a valid input") (newline) (input-loop (string-to-int(read-line)))))
+       ((> in 6) (begin (display "Not a valid input") (newline) (input-loop (string-to-int(read-line)))))
+       (else in)
+    )
 )
 
 ;Converts the input into an idex for the list
