@@ -48,7 +48,7 @@
     (define input (input-loop (string-to-int(read-line))))
     ;(display input)
     (if (full-row board 5 input)
-        (display "That slot is full, please choose another" (input-loop (string-to-int(read-line))))
+        (begin (display "That slot is full, please choose another") (newline) (player-turn board player_n))
     )
     (define new-board (place-piece board input 0 player_n))
     ;(display new-board)
@@ -81,7 +81,7 @@
 
 ;Checks to see if a row is full
 (define (full-row board col row)
-  ;(display (list-ref (list-ref board 5) 0))
+  ;(display (list-ref (list-ref board col) row))
   (if (string=? (list-ref (list-ref board col) row) "x")
     #f
     #t
