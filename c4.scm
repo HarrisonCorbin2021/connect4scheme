@@ -48,6 +48,9 @@
     (define input (input-loop (string-to-int(read-line))))
     (display (format "You entered ~a\n" input))
     (if (full-row board 5 input)
+        ; zk This should also have an else statement.
+        ; it works because of how you (exit); but, it would be cleaner 
+        ; to have the "else"
         (begin (display "That slot is full, please choose another") (newline) (player-turn board player_n))
     )
     (define new-board (place-piece board input 0 player_n))
